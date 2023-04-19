@@ -1,0 +1,70 @@
+﻿@model IEnumerable<AP004.Models.Pedidos>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1 class="text-center">Lista de pedidos por cliente</h1>
+<!--Es una linea-->
+<hr />
+<br />
+
+@using (Html.BeginForm()){
+    <em>Selecione Cliente</em>
+    <!--el primer parametro es el nombre del controlador-->
+    @Html.DropDownList("idcliente", (SelectList)ViewBag.clientes)
+    <button class="btn btn-success" >Consultar Pedidos</button>
+}
+
+<hr />
+<br />
+
+
+<table class="table table-bordered table-striped">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.idPedido)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.fechaPedido)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.nomCliente)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.cuidadDestinatario)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.paisDestinatario)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.idPedido)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.fechaPedido)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.nomCliente)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.cuidadDestinatario)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.paisDestinatario)
+            </td>
+            <td>
+                @Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |
+                @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |
+                @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })
+            </td>
+        </tr>
+}
+    </tbody>
+</table>
