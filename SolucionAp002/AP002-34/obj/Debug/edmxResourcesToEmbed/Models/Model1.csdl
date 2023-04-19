@@ -1,0 +1,14 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="Negocios2023Model" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityContainer Name="Negocios2023Entities" annotation:LazyLoadingEnabled="true">
+    <FunctionImport Name="usp_ProductoListar" ReturnType="Collection(Negocios2023Model.usp_ProductoListar_Result)" />
+  </EntityContainer>
+  <ComplexType Name="usp_ProductoListar_Result">
+    <Property Type="Int32" Name="IdProducto" Nullable="false" />
+    <Property Type="String" Name="NomProducto" Nullable="false" MaxLength="40" />
+    <Property Type="Decimal" Name="PrecioUnidad" Nullable="false" Precision="10" Scale="0" />
+    <Property Type="String" Name="NombreCategoria" Nullable="false" MaxLength="15" />
+    <Property Type="String" Name="NomProveedor" Nullable="false" MaxLength="40" />
+    <Property Type="Int16" Name="Stock" Nullable="false" />
+  </ComplexType>
+</Schema>
