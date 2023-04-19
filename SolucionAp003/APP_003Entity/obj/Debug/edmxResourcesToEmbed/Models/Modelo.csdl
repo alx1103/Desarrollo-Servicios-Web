@@ -1,0 +1,63 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="Negocios2023Model" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityContainer Name="Negocios2023Entities" annotation:LazyLoadingEnabled="true">
+    <FunctionImport Name="usp_ProductoListar" ReturnType="Collection(Negocios2023Model.usp_ProductoListar_Result)" />
+    <EntitySet Name="clientes" EntityType="Negocios2023Model.clientes" />
+    <EntitySet Name="pedidoscabe" EntityType="Negocios2023Model.pedidoscabe" />
+    <AssociationSet Name="FK__pedidosca__IdCli__398D8EEE" Association="Negocios2023Model.FK__pedidosca__IdCli__398D8EEE">
+      <End Role="clientes" EntitySet="clientes" />
+      <End Role="pedidoscabe" EntitySet="pedidoscabe" />
+    </AssociationSet>
+  </EntityContainer>
+  <ComplexType Name="usp_ProductoListar_Result">
+    <Property Type="Int32" Name="IdProducto" Nullable="false" />
+    <Property Type="String" Name="NomProducto" Nullable="false" MaxLength="40" />
+    <Property Type="Decimal" Name="PrecioUnidad" Nullable="false" Precision="10" Scale="0" />
+    <Property Type="String" Name="NombreCategoria" Nullable="false" MaxLength="15" />
+    <Property Type="String" Name="NomProveedor" Nullable="false" MaxLength="40" />
+    <Property Type="Int16" Name="Stock" Nullable="false" />
+  </ComplexType>
+  <EntityType Name="clientes">
+    <Key>
+      <PropertyRef Name="IdCliente" />
+    </Key>
+    <Property Name="IdCliente" Type="String" Nullable="false" MaxLength="5" FixedLength="false" Unicode="false" />
+    <Property Name="NomCliente" Type="String" Nullable="false" MaxLength="40" FixedLength="false" Unicode="false" />
+    <Property Name="DirCliente" Type="String" Nullable="false" MaxLength="60" FixedLength="false" Unicode="false" />
+    <Property Name="idpais" Type="String" MaxLength="3" FixedLength="true" Unicode="false" />
+    <Property Name="fonoCliente" Type="String" Nullable="false" MaxLength="25" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="pedidoscabe" Relationship="Negocios2023Model.FK__pedidosca__IdCli__398D8EEE" FromRole="clientes" ToRole="pedidoscabe" />
+  </EntityType>
+  <EntityType Name="pedidoscabe">
+    <Key>
+      <PropertyRef Name="IdPedido" />
+    </Key>
+    <Property Name="IdPedido" Type="Int32" Nullable="false" />
+    <Property Name="IdCliente" Type="String" MaxLength="5" FixedLength="false" Unicode="false" />
+    <Property Name="IdEmpleado" Type="Int32" />
+    <Property Name="FechaPedido" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="FechaEntrega" Type="DateTime" Precision="3" />
+    <Property Name="FechaEnvio" Type="DateTime" Precision="3" />
+    <Property Name="EnvioPedido" Type="String" MaxLength="1" FixedLength="true" Unicode="false" />
+    <Property Name="CantidaPedido" Type="Int32" />
+    <Property Name="Destinatario" Type="String" MaxLength="40" FixedLength="false" Unicode="false" />
+    <Property Name="DirDestinatario" Type="String" MaxLength="60" FixedLength="false" Unicode="false" />
+    <Property Name="CiuDestinatario" Type="String" MaxLength="60" FixedLength="false" Unicode="false" />
+    <Property Name="RefDestnatario" Type="String" MaxLength="60" FixedLength="false" Unicode="false" />
+    <Property Name="DepDestinatario" Type="String" MaxLength="60" FixedLength="false" Unicode="false" />
+    <Property Name="PaiDestinatario" Type="String" MaxLength="60" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="clientes" Relationship="Negocios2023Model.FK__pedidosca__IdCli__398D8EEE" FromRole="pedidoscabe" ToRole="clientes" />
+  </EntityType>
+  <Association Name="FK__pedidosca__IdCli__398D8EEE">
+    <End Type="Negocios2023Model.clientes" Role="clientes" Multiplicity="0..1" />
+    <End Type="Negocios2023Model.pedidoscabe" Role="pedidoscabe" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="clientes">
+        <PropertyRef Name="IdCliente" />
+      </Principal>
+      <Dependent Role="pedidoscabe">
+        <PropertyRef Name="IdCliente" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+</Schema>

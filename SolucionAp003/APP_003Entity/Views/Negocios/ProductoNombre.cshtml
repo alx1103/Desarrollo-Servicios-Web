@@ -1,0 +1,72 @@
+﻿@model IEnumerable<APP_003Entity.Models.usp_ProductoListar_Result>
+
+@{
+    ViewBag.Title = "ProductoNombre";
+}
+
+<h2 class="text-center">Producto por Nombre</h2>
+
+<p>
+    @Html.ActionLink("Retornar al Menu de Opciones", "Index")
+</p>
+
+@using (Html.BeginForm()){
+    <strong>Ingrese el nombre de producto</strong>
+    <!--name es el valor del parametro, y value el nombre que tendra-->
+    <!--Como el ViewBag guardo el nombre, despues de consultar tendra el valor que ya habia escrito-->
+    <input type="text" name="nombre" value="@ViewBag.nombre"/>
+    <button class="btn btn-success">Consultar</button>
+    }
+
+<table class="table table-borderless">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.IdProducto)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.NomProducto)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.PrecioUnidad)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.NombreCategoria)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.NomProveedor)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Stock)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.IdProducto)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.NomProducto)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.PrecioUnidad)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.NombreCategoria)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.NomProveedor)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Stock)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |
+            @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |
+            @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })
+        </td>
+    </tr>
+}
+
+</table>

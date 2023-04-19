@@ -1,0 +1,21 @@
+﻿
+@{
+    ViewBag.Title = "Index";
+}
+
+
+<h2 class="text-center">Menu Consultas Negocio 2023</h2>
+
+<table style="font-size:large">
+    <tr>
+        <!--El segundo parametro es el de controller-->
+        <td>@Html.ActionLink("Listado de Productos", "ProductosListar")</td>
+    </tr>
+    <tr>
+        <td>@Html.ActionLink("Productos por Nombre", "ProductoNombre")</td>
+    </tr>
+    <tr>
+        <td>@Html.ActionLink("Listado de Pedidos por Cliente", "PedidosCliente")</td>
+    </tr>
+</table>
+

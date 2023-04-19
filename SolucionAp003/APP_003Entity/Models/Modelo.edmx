@@ -1,0 +1,194 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="Negocios2023Model.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="clientes">
+          <Key>
+            <PropertyRef Name="IdCliente" />
+          </Key>
+          <Property Name="IdCliente" Type="varchar" MaxLength="5" Nullable="false" />
+          <Property Name="NomCliente" Type="varchar" MaxLength="40" Nullable="false" />
+          <Property Name="DirCliente" Type="varchar" MaxLength="60" Nullable="false" />
+          <Property Name="idpais" Type="char" MaxLength="3" />
+          <Property Name="fonoCliente" Type="varchar" MaxLength="25" Nullable="false" />
+        </EntityType>
+        <EntityType Name="pedidoscabe">
+          <Key>
+            <PropertyRef Name="IdPedido" />
+          </Key>
+          <Property Name="IdPedido" Type="int" Nullable="false" />
+          <Property Name="IdCliente" Type="varchar" MaxLength="5" />
+          <Property Name="IdEmpleado" Type="int" />
+          <Property Name="FechaPedido" Type="datetime" Nullable="false" />
+          <Property Name="FechaEntrega" Type="datetime" />
+          <Property Name="FechaEnvio" Type="datetime" />
+          <Property Name="EnvioPedido" Type="char" MaxLength="1" />
+          <Property Name="CantidaPedido" Type="int" />
+          <Property Name="Destinatario" Type="varchar" MaxLength="40" />
+          <Property Name="DirDestinatario" Type="varchar" MaxLength="60" />
+          <Property Name="CiuDestinatario" Type="varchar" MaxLength="60" />
+          <Property Name="RefDestnatario" Type="varchar" MaxLength="60" />
+          <Property Name="DepDestinatario" Type="varchar" MaxLength="60" />
+          <Property Name="PaiDestinatario" Type="varchar" MaxLength="60" />
+        </EntityType>
+        <Association Name="FK__pedidosca__IdCli__398D8EEE">
+          <End Role="clientes" Type="Self.clientes" Multiplicity="0..1" />
+          <End Role="pedidoscabe" Type="Self.pedidoscabe" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="clientes">
+              <PropertyRef Name="IdCliente" />
+            </Principal>
+            <Dependent Role="pedidoscabe">
+              <PropertyRef Name="IdCliente" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Function Name="usp_ProductoListar" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <EntityContainer Name="Negocios2023ModelStoreContainer">
+          <EntitySet Name="clientes" EntityType="Self.clientes" Schema="Ventas" store:Type="Tables" />
+          <EntitySet Name="pedidoscabe" EntityType="Self.pedidoscabe" Schema="Ventas" store:Type="Tables" />
+          <AssociationSet Name="FK__pedidosca__IdCli__398D8EEE" Association="Self.FK__pedidosca__IdCli__398D8EEE">
+            <End Role="clientes" EntitySet="clientes" />
+            <End Role="pedidoscabe" EntitySet="pedidoscabe" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="Negocios2023Model" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityContainer Name="Negocios2023Entities" annotation:LazyLoadingEnabled="true" >
+          <FunctionImport Name="usp_ProductoListar" ReturnType="Collection(Negocios2023Model.usp_ProductoListar_Result)" />
+          <EntitySet Name="clientes" EntityType="Negocios2023Model.clientes" />
+          <EntitySet Name="pedidoscabe" EntityType="Negocios2023Model.pedidoscabe" />
+          <AssociationSet Name="FK__pedidosca__IdCli__398D8EEE" Association="Negocios2023Model.FK__pedidosca__IdCli__398D8EEE">
+            <End Role="clientes" EntitySet="clientes" />
+            <End Role="pedidoscabe" EntitySet="pedidoscabe" />
+          </AssociationSet>
+        </EntityContainer>
+        <ComplexType Name="usp_ProductoListar_Result">
+          <Property Type="Int32" Name="IdProducto" Nullable="false" />
+          <Property Type="String" Name="NomProducto" Nullable="false" MaxLength="40" />
+          <Property Type="Decimal" Name="PrecioUnidad" Nullable="false" Precision="10" Scale="0" />
+          <Property Type="String" Name="NombreCategoria" Nullable="false" MaxLength="15" />
+          <Property Type="String" Name="NomProveedor" Nullable="false" MaxLength="40" />
+          <Property Type="Int16" Name="Stock" Nullable="false" />
+        </ComplexType>
+        <EntityType Name="clientes">
+          <Key>
+            <PropertyRef Name="IdCliente" />
+          </Key>
+          <Property Name="IdCliente" Type="String" Nullable="false" MaxLength="5" FixedLength="false" Unicode="false" />
+          <Property Name="NomCliente" Type="String" Nullable="false" MaxLength="40" FixedLength="false" Unicode="false" />
+          <Property Name="DirCliente" Type="String" Nullable="false" MaxLength="60" FixedLength="false" Unicode="false" />
+          <Property Name="idpais" Type="String" MaxLength="3" FixedLength="true" Unicode="false" />
+          <Property Name="fonoCliente" Type="String" Nullable="false" MaxLength="25" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="pedidoscabe" Relationship="Negocios2023Model.FK__pedidosca__IdCli__398D8EEE" FromRole="clientes" ToRole="pedidoscabe" />
+        </EntityType>
+        <EntityType Name="pedidoscabe">
+          <Key>
+            <PropertyRef Name="IdPedido" />
+          </Key>
+          <Property Name="IdPedido" Type="Int32" Nullable="false" />
+          <Property Name="IdCliente" Type="String" MaxLength="5" FixedLength="false" Unicode="false" />
+          <Property Name="IdEmpleado" Type="Int32" />
+          <Property Name="FechaPedido" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="FechaEntrega" Type="DateTime" Precision="3" />
+          <Property Name="FechaEnvio" Type="DateTime" Precision="3" />
+          <Property Name="EnvioPedido" Type="String" MaxLength="1" FixedLength="true" Unicode="false" />
+          <Property Name="CantidaPedido" Type="Int32" />
+          <Property Name="Destinatario" Type="String" MaxLength="40" FixedLength="false" Unicode="false" />
+          <Property Name="DirDestinatario" Type="String" MaxLength="60" FixedLength="false" Unicode="false" />
+          <Property Name="CiuDestinatario" Type="String" MaxLength="60" FixedLength="false" Unicode="false" />
+          <Property Name="RefDestnatario" Type="String" MaxLength="60" FixedLength="false" Unicode="false" />
+          <Property Name="DepDestinatario" Type="String" MaxLength="60" FixedLength="false" Unicode="false" />
+          <Property Name="PaiDestinatario" Type="String" MaxLength="60" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="clientes" Relationship="Negocios2023Model.FK__pedidosca__IdCli__398D8EEE" FromRole="pedidoscabe" ToRole="clientes" />
+        </EntityType>
+        <Association Name="FK__pedidosca__IdCli__398D8EEE">
+          <End Type="Negocios2023Model.clientes" Role="clientes" Multiplicity="0..1" />
+          <End Type="Negocios2023Model.pedidoscabe" Role="pedidoscabe" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="clientes">
+              <PropertyRef Name="IdCliente" />
+            </Principal>
+            <Dependent Role="pedidoscabe">
+              <PropertyRef Name="IdCliente" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="Negocios2023ModelStoreContainer" CdmEntityContainer="Negocios2023Entities" >
+          <FunctionImportMapping FunctionImportName="usp_ProductoListar" FunctionName="Negocios2023Model.Store.usp_ProductoListar">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="Negocios2023Model.usp_ProductoListar_Result">
+                <ScalarProperty Name="IdProducto" ColumnName="IdProducto" />
+                <ScalarProperty Name="NomProducto" ColumnName="NomProducto" />
+                <ScalarProperty Name="PrecioUnidad" ColumnName="PrecioUnidad" />
+                <ScalarProperty Name="NombreCategoria" ColumnName="NombreCategoria" />
+                <ScalarProperty Name="NomProveedor" ColumnName="NomProveedor" />
+                <ScalarProperty Name="Stock" ColumnName="Stock" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <EntitySetMapping Name="clientes">
+            <EntityTypeMapping TypeName="Negocios2023Model.clientes">
+              <MappingFragment StoreEntitySet="clientes">
+                <ScalarProperty Name="fonoCliente" ColumnName="fonoCliente" />
+                <ScalarProperty Name="idpais" ColumnName="idpais" />
+                <ScalarProperty Name="DirCliente" ColumnName="DirCliente" />
+                <ScalarProperty Name="NomCliente" ColumnName="NomCliente" />
+                <ScalarProperty Name="IdCliente" ColumnName="IdCliente" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="pedidoscabe">
+            <EntityTypeMapping TypeName="Negocios2023Model.pedidoscabe">
+              <MappingFragment StoreEntitySet="pedidoscabe">
+                <ScalarProperty Name="PaiDestinatario" ColumnName="PaiDestinatario" />
+                <ScalarProperty Name="DepDestinatario" ColumnName="DepDestinatario" />
+                <ScalarProperty Name="RefDestnatario" ColumnName="RefDestnatario" />
+                <ScalarProperty Name="CiuDestinatario" ColumnName="CiuDestinatario" />
+                <ScalarProperty Name="DirDestinatario" ColumnName="DirDestinatario" />
+                <ScalarProperty Name="Destinatario" ColumnName="Destinatario" />
+                <ScalarProperty Name="CantidaPedido" ColumnName="CantidaPedido" />
+                <ScalarProperty Name="EnvioPedido" ColumnName="EnvioPedido" />
+                <ScalarProperty Name="FechaEnvio" ColumnName="FechaEnvio" />
+                <ScalarProperty Name="FechaEntrega" ColumnName="FechaEntrega" />
+                <ScalarProperty Name="FechaPedido" ColumnName="FechaPedido" />
+                <ScalarProperty Name="IdEmpleado" ColumnName="IdEmpleado" />
+                <ScalarProperty Name="IdCliente" ColumnName="IdCliente" />
+                <ScalarProperty Name="IdPedido" ColumnName="IdPedido" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="Ninguno" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

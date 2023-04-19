@@ -1,0 +1,48 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="Negocios2023ModelStoreContainer" CdmEntityContainer="Negocios2023Entities">
+    <FunctionImportMapping FunctionImportName="usp_ProductoListar" FunctionName="Negocios2023Model.Store.usp_ProductoListar">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="Negocios2023Model.usp_ProductoListar_Result">
+          <ScalarProperty Name="IdProducto" ColumnName="IdProducto" />
+          <ScalarProperty Name="NomProducto" ColumnName="NomProducto" />
+          <ScalarProperty Name="PrecioUnidad" ColumnName="PrecioUnidad" />
+          <ScalarProperty Name="NombreCategoria" ColumnName="NombreCategoria" />
+          <ScalarProperty Name="NomProveedor" ColumnName="NomProveedor" />
+          <ScalarProperty Name="Stock" ColumnName="Stock" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <EntitySetMapping Name="clientes">
+      <EntityTypeMapping TypeName="Negocios2023Model.clientes">
+        <MappingFragment StoreEntitySet="clientes">
+          <ScalarProperty Name="fonoCliente" ColumnName="fonoCliente" />
+          <ScalarProperty Name="idpais" ColumnName="idpais" />
+          <ScalarProperty Name="DirCliente" ColumnName="DirCliente" />
+          <ScalarProperty Name="NomCliente" ColumnName="NomCliente" />
+          <ScalarProperty Name="IdCliente" ColumnName="IdCliente" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="pedidoscabe">
+      <EntityTypeMapping TypeName="Negocios2023Model.pedidoscabe">
+        <MappingFragment StoreEntitySet="pedidoscabe">
+          <ScalarProperty Name="PaiDestinatario" ColumnName="PaiDestinatario" />
+          <ScalarProperty Name="DepDestinatario" ColumnName="DepDestinatario" />
+          <ScalarProperty Name="RefDestnatario" ColumnName="RefDestnatario" />
+          <ScalarProperty Name="CiuDestinatario" ColumnName="CiuDestinatario" />
+          <ScalarProperty Name="DirDestinatario" ColumnName="DirDestinatario" />
+          <ScalarProperty Name="Destinatario" ColumnName="Destinatario" />
+          <ScalarProperty Name="CantidaPedido" ColumnName="CantidaPedido" />
+          <ScalarProperty Name="EnvioPedido" ColumnName="EnvioPedido" />
+          <ScalarProperty Name="FechaEnvio" ColumnName="FechaEnvio" />
+          <ScalarProperty Name="FechaEntrega" ColumnName="FechaEntrega" />
+          <ScalarProperty Name="FechaPedido" ColumnName="FechaPedido" />
+          <ScalarProperty Name="IdEmpleado" ColumnName="IdEmpleado" />
+          <ScalarProperty Name="IdCliente" ColumnName="IdCliente" />
+          <ScalarProperty Name="IdPedido" ColumnName="IdPedido" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>
