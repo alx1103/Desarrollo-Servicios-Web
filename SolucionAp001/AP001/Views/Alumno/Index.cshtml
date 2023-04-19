@@ -1,0 +1,61 @@
+﻿@model IEnumerable<AP001.Models.Alumno>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1 class="text-center">Listado de Alumnos</h1>
+<br />
+<p>
+    <!--Create es el nombre de la variable que está en el controlador un ActionResult-->
+    <a asp-action="Create" class="btn btn-success">Agregar Nuevo Alumno</a>
+</p>
+<br />
+<!--agrega border, y striped agrega un fondo alternativo a las filas-->
+<table class="table table-bordered table-striped">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.IdAlumno)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ApellidoAlumno)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.NombreAlumno)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.EdadAlumno)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.IdAlumno)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ApellidoAlumno)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.NombreAlumno)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.EdadAlumno)
+            </td>
+            <td>
+                <!--Para editar tiene que tomar el id
+                    Ese 'id' coincide con el parametro que tiene que llegar en 
+                    AlumnoController
+                -->
+                @Html.ActionLink("Edit", "Edit", new { id = item.IdAlumno }) |
+                @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |
+                <!--El segundo es como se llama mi ActionResult en el AlumnoController "Eliminar"-->
+                @Html.ActionLink("Delete", "Eliminar", new { id=item.IdAlumno })
+            </td>
+        </tr>
+}
+    </tbody>
+</table>
